@@ -1,41 +1,5 @@
-\documentclass[12pt,a4paper]{article}
-
-\usepackage[margin=2.5cm]{geometry}
+\documentclass{article}
 \usepackage{graphicx}
-\usepackage{listings}
-\usepackage{booktabs}
-\usepackage{xcolor}
-
-\definecolor{codebackground}{RGB}{246,248,250}
-\definecolor{codeborder}{RGB}{210,216,222}
-\definecolor{codeblue}{RGB}{30,70,135}
-\definecolor{codegreen}{RGB}{35,110,65}
-
-\lstdefinestyle{reportlisting}{
-    basicstyle=\ttfamily\footnotesize,
-    backgroundcolor=\color{codebackground},
-    frame=single,
-    rulecolor=\color{codeborder},
-    framerule=0.4pt,
-    framesep=8pt,
-    xleftmargin=9pt,
-    xrightmargin=9pt,
-    breaklines=true,
-    breakatwhitespace=false,
-    columns=fullflexible,
-    keepspaces=true,
-    showstringspaces=false,
-    aboveskip=12pt,
-    belowskip=12pt
-}
-\lstdefinestyle{pythoncode}{
-    style=reportlisting,
-    language=Python,
-    keywordstyle=\color{codeblue}\bfseries,
-    stringstyle=\color{codegreen},
-    commentstyle=\color{gray}\itshape
-}
-
 \title{Labwork 2: Get to Know Your GPU}
 \author{DAO HOANG DUNG \\ Student ID: 2540047}
 \date{\today}
@@ -53,31 +17,18 @@ For this labwork, the main goal is to use numba.cuda to get to know my GPU
 \end{itemize}
 
 \section{Python code}
-\begin{lstlisting}[style=pythoncode]
-from numba import cuda
-print(cuda.detect())
-
-gpu = cuda.select_device(0)
-print("GPU name:", gpu.name)
-\end{lstlisting}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{images/code.png}
+    \caption{Code}
+    \label{fig:gpu-output}
+\end{figure}
 
 
 \section{Results}
-\begin{lstlisting}[style=reportlisting]
-Found 1 CUDA devices
-id 0  b'NVIDIA GeForce RTX 3050 Ti Laptop GPU'  [SUPPORTED]
-  Compute Capability: 8.6
-  PCI Device ID: 0
-  PCI Bus ID: 1
-  UUID: GPU-bccf1f6c-0e58-117b-988a-c927c644ed55
-  Watchdog: Enabled
-  Compute Mode: WDDM
-  FP32/FP64 Performance Ratio: 64
-Summary:
-        1/1 devices are supported
-True
-GPU name: b'NVIDIA GeForce RTX 3050 Ti Laptop GPU'
-\end{lstlisting}
-
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{images/result.png}
+\end{figure}
 
 \end{document}
