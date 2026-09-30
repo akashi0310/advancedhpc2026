@@ -47,3 +47,38 @@ print(f"GPU execution time: {end_time - start_time:.4f} seconds")
 result = dst_gpu.copy_to_host()
 plt.imshow(result.reshape(height, width, 3))
 plt.show()
+
+#_____________________________________________________________
+block_sizes = [32, 64, 128, 256, 512, 1024]
+execution_times = []
+
+src_gpu = cuda.to_device(pixels) 
+dst_gpu = cuda.device_array_like(src_gpu)
+for threads_per_block in block_sizes:
+    blocks = (
+        len(pixels) + threads_per_block - 1
+    ) // threads_per_block
+
+    start_time = time.perf_counter()
+
+    grayscale_gpu[blocks, threads_per_block](src_gpu, dst_gpu)
+    cuda.synchronize()  # Wait until the GPU finishes
+
+    end_time = time.perf_counter()
+    execution_time = (end_time - start_time) * 1000  # milliseconds
+
+    execution_times.append(execution_time)
+
+    print(
+        f"Block size: {threads_per_block}, "
+        f"Time: {execution_time:.4f} ms"
+    )
+
+plt.plot(block_sizes, execution_times, marker="o", linewidth=2)
+
+plt.title("CUDA Block Size vs Execution Time")
+plt.xlabel("Threads per Block")
+plt.ylabel("Execution Time (ms)")
+plt.xticks(block_sizes)
+plt.grid(True)
+plt.show()
