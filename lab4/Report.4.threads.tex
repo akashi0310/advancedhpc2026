@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage{graphicx}
-\title{Labwork 3}
+\title{Labwork 4}
 \author{DAO HOANG DUNG \\ Student ID: 2540047}
 \date{\today}
 
@@ -9,8 +9,9 @@
 \maketitle
 
 \section{Objective}
-For this labwork, I need to convert the RGB image to Grayscale image using both CPU and GPU.But instead of using 1D block,
-I choose to improve by using 2D blocks.After that, I calculate the time to measure the speedup
+For this labwork, I need to convert the RGB image to Grayscale image using both CPU and GPU.
+But instead of using 1D block,I choose to improve by using 2D blocks.
+After that, I calculate and compare the result with 1D block.
 
 \section{Python pseudo-code}
 \begin{itemize}
@@ -18,7 +19,7 @@ I choose to improve by using 2D blocks.After that, I calculate the time to measu
      \item Reshape to 2D array
      \item Apply the grayscale for the image using CPU
      \item Apply the grayscale for the image using GPU
-     \item Compare the different of time between each blocks
+     \item Compare the different of time between 2D and 1D blocks
 \end{itemize}
 
 
@@ -29,25 +30,24 @@ I choose to improve by using 2D blocks.After that, I calculate the time to measu
     \centering
     \begin{minipage}{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{images/gray_cpu.png}
-        \textbf{(a) CPU result}
+        \includegraphics[width=\linewidth]{images/gray2d.png}
+        \textbf{(a) GPU 2D result}
     \end{minipage}
     \hfill
     \begin{minipage}{0.48\textwidth}
         \centering
         \includegraphics[width=\linewidth]{images/gray_gpu_128.png}
-        \textbf{(b) GPU result}
+        \textbf{(b) GPU 1D result}
     \end{minipage}
-    \caption{Grayscale conversion results using the CPU and GPU.}
+    \caption{Grayscale conversion results between 2D vs 1D}
     \label{fig:grayscale-results}
 \end{figure}
 
 
-
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/plot.png}
-    \caption{CUDA block size versus GPU execution time.}
+    \includegraphics[width=0.8\textwidth]{images/compareplot.png}
+    \caption{CUDA block size comparision between 2D and 1D blocks execution time.}
     \label{fig:block-size-time}
 \end{figure}
 
